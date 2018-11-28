@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="username"
+            android:textColor="@android:color/black"
+            tools:layout_editor_absoluteX="34dp"
+            tools:layout_editor_absoluteY="30dp" />
+
+        <EditText
+            android:id="@+id/usernamebox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="text|textPersonName"
+            tools:layout_editor_absoluteX="114dp"
+            tools:layout_editor_absoluteY="16dp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="password"
+            android:textColor="@android:color/black"
+            tools:layout_editor_absoluteX="34dp"
+            tools:layout_editor_absoluteY="100dp" />
+
+        <EditText
+            android:id="@+id/passwordbox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:ems="10"
+            android:inputType="textPassword"
+            tools:layout_editor_absoluteX="114dp"
+            tools:layout_editor_absoluteY="83dp" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="role"
+            android:textColor="@android:color/black"
+            tools:layout_editor_absoluteX="34dp"
+            tools:layout_editor_absoluteY="158dp" />
+
+        <Spinner
+            android:id="@+id/spinner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            tools:layout_editor_absoluteX="114dp"
+            tools:layout_editor_absoluteY="158dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_marginTop="70dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/create"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="newUser"
+                android:text="Create account"
+                tools:layout_editor_absoluteX="34dp"
+                tools:layout_editor_absoluteY="337dp" />
+
+            <Button
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="OnSetAvatarButton"
+                android:text="Log in"
+                tools:layout_editor_absoluteX="222dp"
+                tools:layout_editor_absoluteY="337dp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/hinttext"
+            android:layout_width="340dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:gravity="center"
+            tools:layout_editor_absoluteX="30dp"
+            tools:layout_editor_absoluteY="428dp" />
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>
