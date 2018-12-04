@@ -75,7 +75,7 @@ public class HORateActivity extends AppCompatActivity implements AdapterView.OnI
 
             HomeownerSelectdb homeownerselectdb = new HomeownerSelectdb(this);
             HomeownerSelect homeownerselect = homeownerselectdb.findHOService(MainActivity.u,HoViewActivity.sn,HoViewActivity.pn,HoViewActivity.day,HoViewActivity.starttime,HoViewActivity.endtime);
-            if (homeownerselect.getComment()==null || homeownerselect.getComment().length()<=0){
+            if (homeownerselect==null || homeownerselect.getComment().length()<=0){
                 hint.setText("Submit successfully.");
             }else{
                 hint.setText("You have commented and rated, and new comments and ratings have been updated");
