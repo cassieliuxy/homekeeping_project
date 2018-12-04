@@ -14,6 +14,8 @@ import java.util.Map;
 import static android.support.test.espresso.Espresso.onData;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
+import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
+import static android.support.test.espresso.action.ViewActions.typeText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
@@ -26,13 +28,13 @@ import static org.hamcrest.collection.IsMapContaining.hasEntry;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 public class HOSearchTimeTest {
-
-    @Rule
-    public ActivityTestRule<HoSearchActivity> HomeownerSearchActivityTestRule = new ActivityTestRule<>(HoSearchActivity.class);
 /*
     @Rule
-    public ActivityTestRule<HomeownerActivity> HomeownerActivityTestRule = new ActivityTestRule<>(HomeownerActivity.class);
+    public ActivityTestRule<HoSearchActivity> HomeownerSearchActivityTestRule = new ActivityTestRule<>(HoSearchActivity.class);
 */
+    @Rule
+    public ActivityTestRule<HomeownerActivity> HomeownerActivityTestRule = new ActivityTestRule<>(HomeownerActivity.class);
+
 
 
     @Test
@@ -43,12 +45,71 @@ public class HOSearchTimeTest {
         onData(is("11")).perform(click());
         onView(withId(R.id.hoendtime)).perform(click());
         onData(is("13")).perform(click());
+        onView(withId(R.id.hosearch)).perform(click());
 
-        onData(anything()).inAdapterView((withId(R.id.hosearchlist)).atPosition(0).perform(click()));
+        onData(anything()).inAdapterView((withId(R.id.hosearchlist))).atPosition(1).perform(click());
 
- /*       onView(allOf(withId(R.id.SN),withText("sp5"))).perform(click());
-       onData(is("Window Cleaning")).perform(click()); */
-        onView(withText("This time is the past time.Please reselect.")).check(matches(isDisplayed()));
+        onView(withText("Invalid time.Please reselect.")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void futureTimeIsInvalid() {
+        onView(withId(R.id.hoday)).perform(click());
+        onData(is("Sunday")).perform(click());
+        onView(withId(R.id.hostarttime)).perform(click());
+        onData(is("13")).perform(click());
+        onView(withId(R.id.hoendtime)).perform(click());
+        onData(is("15")).perform(click());
+        onView(withId(R.id.hosearch)).perform(click());
+
+        onData(anything()).inAdapterView((withId(R.id.hosearchlist))).atPosition(1).perform(click());
+
+        onView(withText("Book service successfully.")).check(matches(isDisplayed()));
+    }
+
+   @Test
+    public void repeatedFutureTimeIsInvalid() {
+        onView(withId(R.id.hoday)).perform(click());
+        onData(is("Sunday")).perform(click());
+        onView(withId(R.id.hostarttime)).perform(click());
+        onData(is("13")).perform(click());
+        onView(withId(R.id.hoendtime)).perform(click());
+        onData(is("15")).perform(click());
+        onView(withId(R.id.hosearch)).perform(click());
+
+        onData(anything()).inAdapterView((withId(R.id.hosearchlist))).atPosition(2).perform(click());
+
+        onView(withText("Invalid time.Please reselect.")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void emptyCommentIsInvalid() {
+
+        onView(withId(R.id.hoview)).perform(click());
+        onData(anything()).inAdapterView((withId(R.id.hoviewlist))).atPosition(0).perform(click());
+
+        onView(withId(R.id.rateho)).perform(click());
+        onData(is("5")).perform(click());
+
+        onView(withId(R.id.button4)).perform(click());
+
+        onView(withText("Invalid comment.")).check(matches(isDisplayed()));
+    }
+
+    @Test
+    public void commentIsInvalid() throws InterruptedException {
+
+        onView(withId(R.id.hoview)).perform(click());
+        onData(anything()).inAdapterView((withId(R.id.hoviewlist))).atPosition(1).perform(click());
+
+        onView(withId(R.id.rateho)).perform(click());
+        onData(is("4")).perform(click());
+
+        onView(withId(R.id.hocomment)).perform(typeText("Good job."), closeSoftKeyboard());
+
+        onView(withId(R.id.button4)).perform(click());
+
+        onView(withText("Submit successfully.")).check(matches(isDisplayed()));
     }
 
 
